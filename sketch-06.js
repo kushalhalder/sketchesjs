@@ -48,6 +48,7 @@ const sketch = () => {
 			const angle2 = n * Math.PI;
 			const scale = math.mapRange(n, -1, 1, params.scaleMin, params.scaleMax);
 
+			// clock
 			context.save();
 			context.beginPath();
 			context.translate(x, y);
@@ -59,14 +60,13 @@ const sketch = () => {
 
 			context.restore();
 
+			// one hand
 			context.save();
 
 			context.translate(x, y);
 			context.translate(margx, margy);
 			context.translate(cellw * 0.5, cellh * 0.5);
-			
-
-			// one hand
+						
 			context.lineWidth = 2;
 			context.lineCap = params.lineCap;
 
@@ -76,7 +76,15 @@ const sketch = () => {
 			context.lineTo(0, 0)
 			context.stroke();
 
+			context.restore();
+
 			// second hand
+			context.save();
+			
+			context.translate(x, y);
+			context.translate(margx, margy);
+			context.translate(cellw * 0.5, cellh * 0.5);
+
 			context.lineWidth = 2;
 			context.lineCap = params.lineCap;
 
