@@ -44,7 +44,8 @@ const sketch = () => {
 			const h = cellh * 0.8;
 
 			const n = random.noise2D(x + frame * 10, y, params.freq);
-			const angle = n * Math.PI;
+			const angle1 = n * Math.PI;
+			const angle2 = n * Math.PI;
 			const scale = math.mapRange(n, -1, 1, params.scaleMin, params.scaleMax);
 
 			context.save();
@@ -63,14 +64,26 @@ const sketch = () => {
 			context.translate(x, y);
 			context.translate(margx, margy);
 			context.translate(cellw * 0.5, cellh * 0.5);
-			context.rotate(angle);
+			
 
+			// one hand
 			context.lineWidth = 2;
 			context.lineCap = params.lineCap;
 
+			context.rotate(angle1);
 			context.beginPath();
 			context.moveTo(w * -0.5, 0);
 			context.lineTo(0, 0)
+			context.stroke();
+
+			// second hand
+			context.lineWidth = 2;
+			context.lineCap = params.lineCap;
+
+			// context.beginPath();
+			context.rotate(angle2);
+			context.moveTo(0, 0);
+			context.lineTo(w * 0.5, 0)
 			context.stroke();
 
 			context.restore();
